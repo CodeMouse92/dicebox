@@ -7,7 +7,41 @@ Author(s): Jason C. McDonald
 
 # Process command line arguments.
 import sys
-from dicebox.items import coins, dice, socks
+from dicebox.items import cards, coins, dice, socks
+
+def use_cards(args):
+    """
+    Calls the cards function.
+    """
+
+    draws = 1
+
+    def die():
+        """
+        Die with an error.
+        """
+        print("Argument must be an integer specifying number of cards, 1 <= n >= 52.")
+        print("If no argument is specified, a single card is drawn.")
+        sys.exit(1)
+
+    # Make sure we have only one argument, an integer.
+    if len(args) == 1:
+        try:
+            draws = int(args[0])
+        except ValueError:
+            die()
+        if draws < 1 or draws > 52:
+            die()
+    # If we have no arguments, draw one card.
+    elif len(args) == 0:
+        draws = 1
+    # Otherwise, throw an error.
+    else:
+        die()
+
+    carddeck = cards.CardDeck(draws)
+    carddeck.draw()
+    carddeck.display()
 
 def use_coins(args):
     """
@@ -105,7 +139,7 @@ def use_socks(args):
             pulls = int(args[0])
         except ValueError:
             die()
-    # If we have no arguments, flip one coin.
+    # If we have no arguments, draw one sock.
     elif len(args) == 0:
         pulls = 1
     # Otherwise, throw an error.
@@ -128,7 +162,9 @@ def main():
         args = sys.argv[2:]
 
     item = sys.argv[1]
-    if item == "coin":
+    if item == "card" or item == "cards":
+        use_cards(args)
+    elif item == "coin":
         use_coins(args)
     elif item == "die" or item == "dice":
         use_dice(args)
