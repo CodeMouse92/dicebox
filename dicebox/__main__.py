@@ -18,8 +18,9 @@ def use_cards(args):
         """
         Die with an error.
         """
-        print("Argument must be an integer specifying number of cards, 1 <= n >= 52.")
-        print("If no argument is specified, a single card is drawn.")
+        print("One optional argument:")
+        print("  cards (optional): Number of cards to draw, integer "
+              + "where n > 0. Default = 1.")
         sys.exit(1)
 
     # Make sure we have only one argument, an integer.
@@ -50,8 +51,9 @@ def use_coins(args):
         """
         Die with an error.
         """
-        print("Argument must be an integer specifying number of coins, > 0.")
-        print("If no argument is specified, a single coin is flipped.")
+        print("One optional argument:")
+        print("  coins (optional): Number of coins, integer where n > 0. " +
+              "Default = 1.")
         sys.exit(1)
 
     # Make sure we have only one argument, an integer.
@@ -76,17 +78,15 @@ def use_dice(args):
     Calls the dice function.
     """
 
-    rolls = 1
-    faces = 6
-
     def die():
         """
         Die with an error.
         """
-        print("Argument must be formatted as NdF, where N is the number of \
-dice, and F is the number of faces on each die. N and F must be >= 0.")
-        print("i.e. 3d6 = roll 3 six-faced dice.")
-        print("If no argument is specified, 1d6 is used.")
+        print("One optional argument:")
+        print("  roll (optional): String formatted as 'NdF', where N is the "
+              + "number of dice, and F is the number of faces on each die. "
+              + "N must > 0, F >= 4. Default = 1d6.")
+        print("  i.e. 3d6 = roll 3 six-faced dice.")
         sys.exit(1)
 
     # Make sure we have only one argument, a string.
@@ -106,8 +106,8 @@ dice, and F is the number of faces on each die. N and F must be >= 0.")
     else:
         die()
 
-    # Make sure our numbers are > 0
-    if rolls <= 0 or faces <= 0:
+    # Make sure our numbers are valid.
+    if rolls < 1 or faces < 4:
         die()
 
     dicecan = dice.DiceCan(rolls, faces)
@@ -123,8 +123,9 @@ def use_socks(args):
         """
         Die with an error.
         """
-        print("Argument must be an integer specifying number of socks, > 0.")
-        print("If no argument is specified, a single sock is drawn.")
+        print("One optional argument:")
+        print("  count (optional): number of socks, integer where n > 0. "
+              + "Default = 1")
         sys.exit(1)
 
     # Make sure we have only one argument, an integer.
@@ -153,10 +154,12 @@ def use_straws(args):
         """
         Die with an error.
         """
-        print("One argument required, three permitted, all integers:")
-        print("  count (required): the number of straws, n > 0.")
-        print("  short (optional): the number of short straws, 0 < n > count. Default = 1")
-        print("  draws (optional): the number of straws to draw, n > 0. Default = count")
+        print("One argument required, three optional, all integers:")
+        print("  count (required): the number of straws, integer where n > 0.")
+        print("  short (optional): the number of short straws, integer " +
+              "where 0 < n > count. Default = 1")
+        print("  draws (optional): the number of straws to draw, integer " +
+              "where n > 0. Default = count")
         sys.exit(1)
 
     # Make sure we have 1-3 arguments, all integers.
@@ -192,7 +195,14 @@ def main():
     """
     args = []
     if len(sys.argv) <= 1:
-        print("Argument required.")
+        print("Specify a mode and its arguments.")
+        print("Arguments: <required>, [optional=default]")
+        print("  cards [N=1]: Draw [N] playing cards.")
+        print("  coin [N=1]: Flip [N] coins.")
+        print("  dice [N=1]d[F=6]: Roll [N] dice with [F] faces.")
+        print("  sock [N=1]: Draw [N] socks from a drawer.")
+        print("  straws <N> [S=1], [D=N]: Draw [D] straws, from a bundle of " +
+              "<N> straws with [S] short straws.")
         sys.exit(1)
     elif len(sys.argv) >= 2:
         args = sys.argv[2:]

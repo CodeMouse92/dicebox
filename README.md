@@ -11,8 +11,8 @@ Because I feel like it? Seriously, though, I am frequently looking for random ge
 ## Features
 dicebox contains the following decision-making tools:
 
-- Coins
-- Dice, any type, any count
+- Flip any number of **coins**.
+- Roll any number of **dice**, of any type.
 - Drawing straws
 - Playing cards
 - Sock drawer
