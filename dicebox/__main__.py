@@ -7,14 +7,12 @@ Author(s): Jason C. McDonald
 
 # Process command line arguments.
 import sys
-from dicebox.items import cards, coins, dice, socks
+from dicebox.items import cards, coins, dice, socks, straws
 
 def use_cards(args):
     """
     Calls the cards function.
     """
-
-    draws = 1
 
     def die():
         """
@@ -47,8 +45,6 @@ def use_coins(args):
     """
     Calls the coin function.
     """
-
-    flips = 1
 
     def die():
         """
@@ -123,8 +119,6 @@ def use_socks(args):
     Calls the sock function.
     """
 
-    pulls = 1
-
     def die():
         """
         Die with an error.
@@ -150,6 +144,48 @@ def use_socks(args):
     sockdrawer.rummage()
     sockdrawer.display()
 
+def use_straws(args):
+    """
+    Calls the straws function.
+    """
+
+    def die():
+        """
+        Die with an error.
+        """
+        print("One argument required, three permitted, all integers:")
+        print("  count (required): the number of straws, n > 0.")
+        print("  short (optional): the number of short straws, 0 < n > count. Default = 1")
+        print("  draws (optional): the number of straws to draw, n > 0. Default = count")
+        sys.exit(1)
+
+    # Make sure we have 1-3 arguments, all integers.
+    try:
+        if len(args) == 1:
+            count = int(args[0])
+            short = 1
+            draws = 0
+        elif len(args) == 2:
+            count = int(args[0])
+            short = int(args[1])
+            draws = 0
+        elif len(args) == 3:
+            count = int(args[0])
+            short = int(args[1])
+            draws = int(args[2])
+        # Otherwise, throw an error.
+        else:
+            die()
+    except ValueError:
+        die()
+
+    if count < 1 or short < 1 or short > count or (len(args) == 3 and draws < 1):
+        die()
+
+    strawbundle = straws.StrawBundle(count, short, draws)
+    strawbundle.draw()
+    strawbundle.display()
+
 def main():
     """
     The main function for dicebox.
@@ -170,6 +206,8 @@ def main():
         use_dice(args)
     elif item == "sock" or item == "socks":
         use_socks(args)
+    elif item == "straw" or item == "straws":
+        use_straws(args)
 
 if __name__ == "__main__":
     main()
