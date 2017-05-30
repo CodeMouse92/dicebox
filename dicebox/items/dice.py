@@ -18,7 +18,7 @@ class DiceCan:
         Initialize a can of dice.
         """
         # The list of dice, all 1 by default.
-        self.__dice = [True] * count
+        self.__dice = [1] * count
         # The number of faces on one die.
         self.__faces = faces
 

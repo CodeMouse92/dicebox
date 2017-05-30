@@ -16,6 +16,7 @@ dicebox will eventually contain the following (and probably more as I think of t
 - Drawing straws
 - Playing cards
 - Random numbers
+- Sock drawer
 
 dicebox will be first-and-foremost a command-line application. I may add an optional GUI later, but that's not certain.
 

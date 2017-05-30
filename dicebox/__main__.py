@@ -7,7 +7,7 @@ Author(s): Jason C. McDonald
 
 # Process command line arguments.
 import sys
-from dicebox.items import coins, dice
+from dicebox.items import coins, dice, socks
 
 def use_coins(args):
     """
@@ -84,6 +84,38 @@ dice, and F is the number of faces on each die. N and F must be >= 0.")
     dicecan.roll()
     dicecan.display()
 
+def use_socks(args):
+    """
+    Calls the sock function.
+    """
+
+    pulls = 1
+
+    def die():
+        """
+        Die with an error.
+        """
+        print("Argument must be an integer specifying number of socks, > 0.")
+        print("If no argument is specified, a single sock is drawn.")
+        sys.exit(1)
+
+    # Make sure we have only one argument, an integer.
+    if len(args) == 1:
+        try:
+            pulls = int(args[0])
+        except ValueError:
+            die()
+    # If we have no arguments, flip one coin.
+    elif len(args) == 0:
+        pulls = 1
+    # Otherwise, throw an error.
+    else:
+        die()
+
+    sockdrawer = socks.SockDrawer(pulls)
+    sockdrawer.rummage()
+    sockdrawer.display()
+
 def main():
     """
     The main function for dicebox.
@@ -100,6 +132,8 @@ def main():
         use_coins(args)
     elif item == "die" or item == "dice":
         use_dice(args)
+    elif item == "sock" or item == "socks":
+        use_socks(args)
 
 if __name__ == "__main__":
     main()
