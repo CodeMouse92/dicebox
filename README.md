@@ -13,9 +13,9 @@ dicebox contains the following decision-making tools:
 
 - Flip any number of **coins**.
 - Roll any number of **dice**, of any type.
-- Drawing straws
-- Playing cards
-- Sock drawer
+- Drawing **straws**. Who will get the short straw?
+- Draw any number of playing **cards**.
+- Draw a random **sock** from a drawer. (White, black, red, green, blue, argyle, toe, fuzzy, or stripey.)
 
 dicebox will be first-and-foremost a command-line application. I may add an optional GUI later, but that's not certain.
 

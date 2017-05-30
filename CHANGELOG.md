@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dicebox 1.0: 29 May 2017
+## dicebox 1.0-alpha1: 29 May 2017
 
 * Added Dice
 * Added Socks
