@@ -1,6 +1,8 @@
 """
 Coin [dicebox 1.0]
 
+Flip any number of coins.
+
 Author(s): Jason C. McDonald
 """
 

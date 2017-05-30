@@ -3,7 +3,7 @@ Roll dice, flip coins, and simulate other decision-making methods.
 
 ## Author(s)
 
-- Jason C. McDonald (@CodeMouse92)
+- Jason C. McDonald (CodeMouse92)
 
 ## Another? Why?
 Because I feel like it? Seriously, though, I am frequently looking for random generation programs, especially coin and dice simulators. It felt like a simple and fun project that could grow quickly with minimal work.
